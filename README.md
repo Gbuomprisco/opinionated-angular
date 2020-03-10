@@ -1,7 +1,5 @@
 ## An internal style guide for writing code is an important decision that any development team should define and agree on at some point, ideally early on in the project.
 
-*This article was originally published on [Bits and Pieces](https://blog.bitsrc.io) by [Giancarlo Buomprisco](https://medium.com/@.gc)*
-
 If you’ve been writing code professionally, you know very well how important style is for many, many developers. Countless hours in my career have been spent arguing about style.
 
 Why is it so important, though? **Programmers read code way more than they write**: it’s crucial that we simplify this task as much as possible for us but especially for our fellow teammates.
