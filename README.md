@@ -1,21 +1,4 @@
-## An internal style guide for writing code is an important decision that any development team should define and agree on at some point, ideally early on in the project.
-
-If you’ve been writing code professionally, you know very well how important style is for many, many developers. Countless hours in my career have been spent arguing about style.
-
-Why is it so important, though? **Programmers read code way more than they write**: it’s crucial that we simplify this task as much as possible for us but especially for our fellow teammates.
-
-The consensus is to define a style guide before writing the first line of code, but this should not be fixed for the entire project lifecycle: **it is a continuous set of learnings deriving from experimentation and experience.**
-
-It also doesn’t mean you should change your mind every day: it means you should evaluate, discuss and decide with your team as your project grows.
-
-After writing Angular apps since the alpha days, I’ve developed my style, strongly influenced by people I’ve worked with, reading lots of people’s code, and simply experimenting with my projects.
-
-In this article, I want to show how I style my Angular apps and the rationale behind my decisions. Hopefully, it will inspire you and your team to adopt some of it or to make your own.
-
-Any suggestions would be extremely welcome on how to improve it!
-
-
-**Notice**: this style guide is purely stylistic not based on technical details and best practices. This style guide is intended to **simply help with code aesthetics and readability**, not performance, design patterns or else.
+# Opinionated Angular
 
 ## HTML Wrapping and Order
 
@@ -43,15 +26,15 @@ We’re going to rewrite the snippet above using a set of simple rules to make i
 
 I suggest defining a specific order:
 
-* 1. Structural directives
+* Structural directives
 
-* 1. Animations
+* Animations
 
-* . Static properties
+* Static properties
 
-* 4. Dynamic properties
+* Dynamic properties
 
-* 5. Events
+* Events
 
 Let’s see an example of how I would personally write the previous example:
 
