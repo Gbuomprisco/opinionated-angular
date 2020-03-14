@@ -1,22 +1,18 @@
 # Opinionated Angular
+An Opinionated Styleguide for Angular
 
 ## HTML Wrapping and Order
 
-Angular templates have quite a few syntax additions on top of normal HTML, and sometimes they’re not very easy to read.
-
-My first suggestion regards the wrapping. I normally **do not exceed 80 characters per column** for all files: it’s simply much easier to read vertically than horizontally.
+ - do not exceed 80 characters per column** for all files: it’s simply much easier to read vertically than horizontally.
 
 This is an element written without any convention:
 
 ![](https://cdn-images-1.medium.com/max/4096/1*OSGrVXJZrUKE0kragUxzkA.png)
 
-Messy, isn’t it? Almost every project I’ve worked on while consulting was written in a similar fashion.
 
-We’re going to rewrite the snippet above using a set of simple rules to make it way more readable.
+### Rules For Writing HTML Tags
 
-### Defining Rules For Writing HTML Tags
-
-* When an element has two or more attributes, I normally **only write one attribute per line**
+* When an element has two or more attributes, write **one attribute** per line
 
 * Attributes have to be written **in a specific order**
 
@@ -24,7 +20,7 @@ We’re going to rewrite the snippet above using a set of simple rules to make i
 
 ![](https://cdn-images-1.medium.com/max/2000/1*fdCeXlyeroegvXDL4t6Q3A.png)
 
-I suggest defining a specific order:
+Attributes order:
 
 * Structural directives
 
@@ -40,11 +36,9 @@ Let’s see an example of how I would personally write the previous example:
 
 ![](https://cdn-images-1.medium.com/max/2888/1*FW_aK1ASTl3GCtacJ0WdkQ.png)
 
-Even better, I’d always use structural directives exclusively with ng-container:
+Add structural directives only to **ng-container** elements:
 
 ![](https://cdn-images-1.medium.com/max/2888/1*uxEVM22JmR2JeR4RKyKRng.png)
-
-While I think you can mix up the order of the attributes based on a subjective view, I feel quite strong about **displaying structural directives before anything else**.
 
 A structural directive tells me (before I need to know anything else it does):
 
@@ -52,15 +46,11 @@ A structural directive tells me (before I need to know anything else it does):
 
 * Is this field being repeated?
 
-In my opinion, this can facilitate reading through and understanding the structure of your templates.
+This can facilitate reading through and understanding the structure of your templates.
 
 ## Pipes
 
-Pipes are very powerful: they can transform the values in templates and avoid duplication/logic in our components. They can be reused and mixed easily, and are easy to write.
-
-But are they easy to read and to spot? Yes and No.
-
-This is highly subjective and a minor point but I still think it can be valuable to share: whenever I see a pipe in my template, I tend to wrap them within parenthesis. The feeling of division provided by the parenthesis gives me a clue that the value is being transformed and generally is easier on the eye:
+Wrap pipes expressions within parenthesis. The feeling of division provided by the parenthesis gives me a clue that the value is being transformed and generally is easier on the eye:
 
 ![](https://cdn-images-1.medium.com/max/2000/1*Bi5BVprv9s_wCnBAq0ublA.png)
 
@@ -78,7 +68,7 @@ Adding lifecycle hooks interfaces is not mandatory but a suggested practice, whi
 
 When I look for lifecycle hooks, I usually head to the constructor and expect them to see all of them together and not mixed up with other class methods. Ideally, they should be defined in the same order they execute.
 
-What I recommend is:
+It is recommended to:
 
 * always add interfaces
 
@@ -94,7 +84,7 @@ What I recommend is:
 
 ### Logic
 
-I normally avoid directly writing any logic within the lifecycle hooks: my suggestion is to encapsulate logic within private methods and call them within the lifecycle hooks:
+Avoid directly writing any logic within the lifecycle hooks: encapsulate logic within private methods and call them within the lifecycle hooks:
 
 ![](https://cdn-images-1.medium.com/max/2000/1*v06_dzz_36OiXdddKufhvw.png)
 
@@ -117,8 +107,6 @@ I don’t have a strong opinion on this, but try to locate private and public co
 In my experience, mixing them up only leads to confusion and a feeling of chaos.
 
 ## Naming
-
-Oh, naming things is hard, I know.
 
 When it comes to naming, I always have to think it twice or more to come up with a name that is understandable, unambiguous and easy-to-search:
 
