@@ -2,7 +2,7 @@
 
 ## HTML Wrapping and Order
 
- - do not exceed 80 characters per column** for all files: it’s simply much easier to read vertically than horizontally.
+Do not exceed 80 characters per column for all files: it’s simply much easier to read vertically than horizontally.
 
 This is an element written without any convention:
 
