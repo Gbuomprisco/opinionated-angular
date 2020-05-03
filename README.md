@@ -131,9 +131,9 @@ class MyComponent implements OnChanges, OnInit, OnDestroy {
   // props
   constructor() {}
   
- ngOnChanges() {}
- ngOnInit() {}
- ngOnDestroy() {}
+  ngOnChanges() {}
+  ngOnInit() {}
+  ngOnDestroy() {}
 }
 ```
 
@@ -183,6 +183,20 @@ export class MyComponent {
 I don’t have a strong opinion on this, but try to locate private and public component properties not marked with any decorator separately from the decorated properties.
 
 In my experience, mixing them up only leads to confusion and a feeling of chaos.
+
+## Returning Values
+
+Always leave one empty line when you return a value from a method or a function:
+
+```typescript
+ export class MyComponent {
+   getUsersInAdministration () {
+     const requestUrl = 'xxx';
+
+     return this.http.get(requestUrl);
+   }
+ }
+```
 
 ## Naming
 
