@@ -7,7 +7,9 @@ An Opinionated Styleguide for Angular
 
 This is an element written without any convention:
 
-![](https://cdn-images-1.medium.com/max/4096/1*OSGrVXJZrUKE0kragUxzkA.png)
+```html
+<input (input)="onInputChanged($event)" *ngIf="canEdit" class="form-control" [attr.placeholder]="placeholder" @fadeIn type="text" />
+```
 
 
 ### Rules For Writing HTML Tags
@@ -18,7 +20,17 @@ This is an element written without any convention:
 
 * Unless using a single attribute, the closing tag has to be written **on the next line**
 
-![](https://cdn-images-1.medium.com/max/2000/1*fdCeXlyeroegvXDL4t6Q3A.png)
+
+```html
+<input 
+ (input)="onInputChanged($event)"
+ *ngIf="canEdit"
+ class="form-control"
+ [attr.placeholder]="placeholder" 
+ @fadeIn 
+ type="text"
+/>
+```
 
 Attributes order:
 
@@ -34,11 +46,31 @@ Attributes order:
 
 Let’s see an example of how I would personally write the previous example:
 
-![](https://cdn-images-1.medium.com/max/2888/1*FW_aK1ASTl3GCtacJ0WdkQ.png)
+```html
+<input 
+ *ngIf="canEdit"
+ @fadeIn 
+ type="text"
+ class="form-control"
+ [attr.placeholder]="placeholder"
+ (input)="onInputChanged($event)"
+/>
+```
 
 Add structural directives only to **ng-container** elements:
 
-![](https://cdn-images-1.medium.com/max/2888/1*uxEVM22JmR2JeR4RKyKRng.png)
+
+```html
+<ng-container *ngIf="canEdit"> 
+ <input 
+  @fadeIn 
+  type="text"
+  class="form-control"
+  [attr.placeholder]="placeholder"
+  (input)="onInputChanged($event)"
+ />
+</ng-container>
+```
 
 A structural directive tells me (before I need to know anything else it does):
 
@@ -52,11 +84,25 @@ This can facilitate reading through and understanding the structure of your temp
 
 Wrap pipes expressions within parenthesis. The feeling of division provided by the parenthesis gives me a clue that the value is being transformed and generally is easier on the eye:
 
-![](https://cdn-images-1.medium.com/max/2000/1*Bi5BVprv9s_wCnBAq0ublA.png)
+```html
+<ng-container *ngIf="(canEdit$ | async)"> 
+ <input 
+  @fadeIn 
+  type="text"
+  class="form-control"
+  [attr.placeholder]="(placeholder$ | async)"
+  (input)="onInputChanged($event)"
+ />
+</ng-container>
+```
 
 When using multiple pipes, it may even be more important:
 
-![](https://cdn-images-1.medium.com/max/2000/1*WJsTeLNok5M7flf7dMHE2w.png)
+```html
+<input 
+ [value]="(value$ | async | uppercase | trim)"
+/>
+```
 
 ## Lifecycle Hooks
 
@@ -80,13 +126,32 @@ It is recommended to:
 
 * add them in the order they execute. Admittedly though, this is a bit harder to follow consistently, so I guess it’s the least important one
 
-![](https://cdn-images-1.medium.com/max/2492/1*TgTzECqW7WzMBvpm0x0mIA.png)
+```typescript
+class MyComponent implements OnChanges, OnInit, OnDestroy {
+  // props
+  constructor() {}
+  
+ ngOnChanges() {}
+ ngOnInit() {}
+ ngOnDestroy() {}
+}
+```
 
 ### Logic
 
 Avoid directly writing any logic within the lifecycle hooks: encapsulate logic within private methods and call them within the lifecycle hooks:
 
-![](https://cdn-images-1.medium.com/max/2000/1*v06_dzz_36OiXdddKufhvw.png)
+```typescript
+export class MyComponent implements OnInit {
+  ngOnInit() {
+    this.initialize();
+  }
+  
+  private initialize() {
+   // ...
+  }
+}
+```
 
 ## Component Properties and Methods
 
@@ -96,11 +161,24 @@ There are so many of them that defining a specific order to follow would be over
 
 The following is what I would consider a bad example:
 
-![](https://cdn-images-1.medium.com/max/2316/1*1O2RFk_3068CwfotLAmFSA.png)
+```typescript
+export class MyComponent {
+  @Input() value: string;
+  @Output() valueChanged = new EventEmitter<string>();
+  @Input() label: string;
+}
+```
 
 And below is how I would write it; also, notice there’s an empty line in between groups of properties with the same decorator — I think it helps with readability:
 
-![](https://cdn-images-1.medium.com/max/2316/1*uWXSp-qhoZY5n_Cdk6bQ-w.png)
+```typescript
+export class MyComponent {
+  @Input() value: string;
+  @Input() label: string;
+  
+  @Output() valueChanged = new EventEmitter<string>();
+}
+```
 
 I don’t have a strong opinion on this, but try to locate private and public component properties not marked with any decorator separately from the decorated properties.
 
@@ -172,6 +250,4 @@ This how I order my imports:
 
 * 4. Local/Project imports at the end
 
-It’s also a good practice to leave a comment above each group:
-
-![](https://cdn-images-1.medium.com/max/2596/1*cXI7qASNN8LUNUr4RUlcOg.png)
+It’s also a good practice to leave a comment above each group
