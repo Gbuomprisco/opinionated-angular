@@ -1,5 +1,4 @@
-# Opinionated Angular
-An Opinionated Styleguide for Angular
+![Logo](https://github.com/Gbuomprisco/opinionated-angular/blob/master/Group%203.png)
 
 ## HTML Wrapping and Order
 
